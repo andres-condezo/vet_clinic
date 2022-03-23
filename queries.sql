@@ -60,26 +60,12 @@ BEGIN;
 UPDATE animals
 SET species = 'unspecified';
 
-SELECT
-    id,
-    name,
-    date_of_birth,
-    escape_attempts,
-    neutered,
-    weight_kg,
-    species
+SELECT species
 FROM animals;
 
 ROLLBACK;
 
-SELECT
-    id,
-    name,
-    date_of_birth,
-    escape_attempts,
-    neutered,
-    weight_kg,
-    species
+SELECT species
 FROM animals;
 
 BEGIN;
@@ -91,30 +77,19 @@ SET species = 'pokemon'
 WHERE species IS NULL;
 COMMIT;
 
-SELECT
-    id,
-    name,
-    date_of_birth,
-    escape_attempts,
-    neutered,
-    weight_kg,
-    species
+SELECT species
 FROM animals;
 
 BEGIN;
 DELETE
 FROM animals;
 
+SELECT COUNT(*)
+FROM animals;
+
 ROLLBACK;
 
-SELECT
-    id,
-    name,
-    date_of_birth,
-    escape_attempts,
-    neutered,
-    weight_kg,
-    species
+SELECT COUNT(*)
 FROM animals;
 
 BEGIN;
