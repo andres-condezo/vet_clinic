@@ -1,4 +1,4 @@
-/* CREATE DATABASE IF NOT EXISTS clinic;
+CREATE DATABASE IF NOT EXISTS clinic;
 
 CREATE TABLE patients(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE invoice_items
 	FOREIGN KEY (treatment_id) REFERENCES treatments(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-*/
+
 
 CREATE INDEX medical_histories_patient_id_idx ON medical_histories(patient_id);
 
