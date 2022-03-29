@@ -13,7 +13,7 @@ CREATE TABLE medical_histories(
     status VARCHAR(150) NOT NULL,
     CONSTRAINT constraint_patient
     FOREIGN KEY(patient_id) REFERENCES patients(id)
-); */
+);
 
 CREATE TABLE treatments(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -51,3 +51,17 @@ CREATE TABLE invoice_items
 	FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE RESTRICT ON UPDATE CASCADE,
 	FOREIGN KEY (treatment_id) REFERENCES treatments(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+*/
+
+CREATE INDEX medical_histories_patient_id_idx ON medical_histories(patient_id);
+
+CREATE INDEX invoices_medical_history_id_idx ON invoices(medical_history_id);
+
+CREATE INDEX invoice_items_invoice_id_idx ON invoice_items(invoice_id);
+
+CREATE INDEX invoice_items_treatment_id_idx ON invoice_items(treatment_id);
+
+CREATE INDEX medical_histories_treatment_medical_history_id_idx ON medical_histories_treatment(medical_histories_id);
+
+CREATE INDEX medical_histories_treatment_treatment_id_idx ON medical_histories_treatment(treatment_id);
