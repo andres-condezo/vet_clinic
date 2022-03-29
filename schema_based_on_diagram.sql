@@ -23,6 +23,8 @@ CREATE TABLE treatments(
 
 CREATE TABLE medical_histories_treatment(
     id SERIAL PRIMARY KEY NOT NULL,
+    medical_histories_id INT,
+    treatment_id INT,
     FOREIGN KEY (medical_histories_id) REFERENCES medical_histories(id),
     FOREIGN KEY (treatments_id) REFERENCES treatments(id),
 );
