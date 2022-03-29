@@ -1,4 +1,4 @@
-CREATE DATABASE clinic;
+/* CREATE DATABASE IF NOT EXISTS clinic;
 
 CREATE TABLE patients(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -13,12 +13,12 @@ CREATE TABLE medical_histories(
     status VARCHAR(150) NOT NULL,
     CONSTRAINT constraint_patient
     FOREIGN KEY(patient_id) REFERENCES patients(id)
-);
+); */
 
 CREATE TABLE treatments(
     id SERIAL PRIMARY KEY NOT NULL,
     type VARCHAR(150) NOT NULL,
-    name VARCHAR(150) NOT NULL,
+    name VARCHAR(150) NOT NULL
 );
 
 CREATE TABLE medical_histories_treatment(
@@ -26,5 +26,28 @@ CREATE TABLE medical_histories_treatment(
     medical_histories_id INT,
     treatment_id INT,
     FOREIGN KEY (medical_histories_id) REFERENCES medical_histories(id),
-    FOREIGN KEY (treatments_id) REFERENCES treatments(id),
+    FOREIGN KEY (treatment_id) REFERENCES treatments(id)
+);
+
+CREATE TABLE invoices
+(
+	id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	total_amount DECIMAL,
+	generated_at TIMESTAMP,
+	payed_at TIMESTAMP,
+	status VARCHAR(255),
+	medical_history_id INT,
+	FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE invoice_items
+(
+	id INT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	unit_price DECIMAL,
+	quantity INT,
+	total_price DECIMAL,
+	invoice_id INT,
+	treatment_id INT,
+	FOREIGN KEY (invoice_id) REFERENCES invoices(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY (treatment_id) REFERENCES treatments(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
