@@ -22,6 +22,16 @@
       "name": "vet_clinic",
       "database": "vet_clinic2",
       "username": "fabgrel10"
+    },
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "clinic",
+      "database": "clinic",
+      "username": "postgres"
     }
   ]
 }
